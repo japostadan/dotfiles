@@ -29,10 +29,10 @@ export SCRIPTS="$DOTFILES/scripts"
 export ZETTELKASTEN="$HOME/Zettelkasten"
 
 # Go related. In general all executables and scripts go in .local/bin
-#export GOBIN="$HOME/.local/bin"
-#export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-# export GOPATH="$HOME/.local/share/go"
-#export GOPATH="$HOME/go/"
+export GOBIN="$HOME/.local/bin"
+export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
+export GOPATH="$HOME/.local/share/go"
+export GOPATH="$HOME/go/"
 
 # dotnet
 #export DOTNET_ROOT="$HOME/dotnet"
@@ -258,7 +258,7 @@ fi
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/eye/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
+complete -C pomo pomo
 # Only needed for npm install on WSL
 #export NVM_DIR="$HOME/.config/nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm

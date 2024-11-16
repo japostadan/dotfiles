@@ -35,7 +35,7 @@ export BROWSER="firefox"
 # Directories
 
 export REPOS="$HOME/Repos"
-export GITUSER="mischavandenburg"
+export GITUSER="japostadan"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
@@ -47,9 +47,8 @@ export ZETTELKASTEN="$HOME/Zettelkasten"
 
 export GOBIN="$HOME/.local/bin"
 export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-# export GOPATH="$HOME/.local/share/go"
+export GOPATH="$HOME/.local/share/go"
 export GOPATH="$HOME/go/"
-
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -168,7 +167,7 @@ alias lg='lazygit'
 
 # Zettelkasten
 
-alias in="cd \$ZETTELKASTEN/0\ Inbox/"
+alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 alias cdzk="cd \$ZETTELKASTEN"
 
 
@@ -192,11 +191,9 @@ alias ds='devpod ssh'
 
 # Bluetooth
 
-# Airpods Max
-alias btm='bluetoothctl connect 08:FF:44:0E:EA:D6'
+# Sony Headest
+alias btm='bluetoothctl connect 40:72:18:32:AC:53'
 
-# Airpods
-alias bta='bluetoothctl connect 08:65:18:78:BD:A6'
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -223,7 +220,7 @@ zstyle ':completion:*' menu select
 source "$HOME/.privaterc"
 source <(fzf --zsh)
 
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 # ~~~~~~~~~~~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~
 
