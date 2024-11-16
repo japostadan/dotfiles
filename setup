@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/Repos/github.com/japostad/dotfiles"
+DOTFILES_DIR="$HOME/Repos/github.com/japostadan/dotfiles"
 XDG_CONFIG_HOME="$HOME/.config"
 
 create_directories() {
@@ -71,8 +71,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   create_symlinks "${macos_items[@]}"
 fi
 
-# ln -sf "$PWD/.bash_profile" "$HOME"/.bash_profile
-# ln -sf "$PWD/.bashrc" "$HOME"/.bashrc
+ln -sf "$PWD/.bash_profile" "$HOME"/.bash_profile
+ln -sf "$PWD/.bashrc" "$HOME"/.bashrc
 
 # Zettelkasten
 # This one's a little tricky on MacOS because the path contains a space. It needs to be stored as an array,
@@ -124,8 +124,8 @@ fi
 # Arch Linux
 
 # pacman packages:
- sudo pacman -Syu zsh zsh-completions ttf-ubuntu-mono-nerd fzf npm unzip tmux ripgrep fd
+sudo pacman -Syu zsh zsh-completions ttf-ubuntu-mono-nerd fzf npm unzip tmux ripgrep fd
 
 # set up prompt
- mkdir -p "$HOME/.zsh"
- git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
