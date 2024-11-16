@@ -99,16 +99,16 @@ fi
 # ssh-add -q ~/.ssh/mischa
 # ssh-add -q ~/.ssh/mburg
 #{
-ssh-add -q ~/.ssh/id_ed25519
-ssh-add -q ~/.ssh/vanoord
-ssh-add -q ~/.ssh/delegate
+#ssh-add -q ~/.ssh/id_ed25519
+#ssh-add -q ~/.ssh/vanoord
+#ssh-add -q ~/.ssh/delegate
 #} &>/dev/null
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Moved to starship 20-03-2024 for all my prompt needs.
 
-eval "$(starship init bash)"
+#eval "$(starship init bash)"
 
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -116,7 +116,7 @@ alias v=nvim
 # alias vim=nvim
 
 # cd
-alias vo='cd $REPOS/github.com/VanOord/'
+#alias vo='cd $REPOS/github.com/VanOord/'
 alias ..="cd .."
 alias scripts='cd $SCRIPTS'
 #alias cdblog="cd ~/websites/blog"
@@ -197,7 +197,7 @@ alias sbr='source ~/.bashrc'
 alias s='startx'
 
 # vim & second brain
-alias in="cd \$ZETTELKASTEN/0 Inbox/"
+alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 alias zk="cd \$ZETTELKASTEN"
 
 # starting programmes
@@ -211,25 +211,25 @@ alias tp='terraform plan'
 alias fishies=asciiquarium
 
 # kubectl
-alias k='kubectl'
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
-alias kgp='kubectl get pods'
-alias kc='kubectx'
-alias kn='kubens'
+#alias k='kubectl'
+#source <(kubectl completion bash)
+#complete -o default -F __start_kubectl k
+#alias kgp='kubectl get pods'
+#alias kc='kubectx'
+#alias kn='kubens'
 
 alias kcs='kubectl config use-context admin@homelab-staging'
 alias kcp='kubectl config use-context admin@homelab-production'
 
 # flux
-source <(flux completion bash)
-alias fgk='flux get kustomizations'
+#source <(flux completion bash)
+#alias fgk='flux get kustomizations'
 
 # completions
-source <(talosctl completion bash)
-source <(kubectl-cnp completion bash)
-source <(cilium completion bash)
-source <(devpod completion bash)
+#source <(talosctl completion bash)
+#source <(kubectl-cnp completion bash)
+#source <(cilium completion bash)
+#source <(devpod completion bash)
 
 # fzf aliases
 # use fp to do a fzf search and preview the files
@@ -264,6 +264,6 @@ export PATH="/Users/eye/bin:$PATH"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-source /Users/eye/.bash_completions/update_metrics.py.sh
+#source /Users/eye/.bash_completions/update_metrics.py.sh
 
-source /Users/eye/.bash_completions/typer.sh
+#source /Users/eye/.bash_completions/typer.sh
