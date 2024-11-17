@@ -18,9 +18,18 @@ export ZETTELKASTEN="$HOME/Zettelkasten"
 # ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 export GOBIN="$HOME/.local/bin"
 export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
+<<<<<<< HEAD
 export GOPATH="$HOME/go/"
 
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
+=======
+export GOPATH="$HOME/.local/share/go"
+export GOPATH="$HOME/go/"
+
+# ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+>>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 setopt extended_glob null_glob
 
 path=(
@@ -108,6 +117,16 @@ alias gp='git pull'
 alias gs='git status'
 alias lg='lazygit'
 
+<<<<<<< HEAD
+=======
+
+# Zettelkasten
+
+alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
+alias cdzk="cd \$ZETTELKASTEN"
+
+
+>>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 # Kubernetes
 alias k='kubectl'
 alias kgp='kubectl get pods'
@@ -121,6 +140,18 @@ alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 # Reload Zsh config
 alias reload='source ~/.zshrc'
 
+<<<<<<< HEAD
+=======
+# Devpod
+
+alias ds='devpod ssh'
+
+# Bluetooth
+
+# Sony Headest
+alias btm='bluetoothctl connect 40:72:18:32:AC:53'
+
+>>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 fpath+=~/.zfunc
@@ -148,7 +179,10 @@ if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
 
+<<<<<<< HEAD
 # Enable `direnv` for managing environment variables per directory
+=======
+>>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 #eval "$(direnv hook zsh)"
 
 # ~~~~~~~~~~~~~~~ Final Notes ~~~~~~~~~~~~~~~~~~~~~~~~
