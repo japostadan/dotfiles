@@ -1,39 +1,11 @@
-# ~~~~~~~~~~~~~~~ SSH ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-# Using GPG + YubiKey for ssh.
-# Don't execute when in dev container
-
-
-if [[ -z "$REMOTE_CONTAINERS" && -z "$CODESPACES" && -z "$DEVCONTAINER_TYPE" ]]; then
-  export GPG_TTY="$(tty)"
-  unset SSH_AGENT_PID
-
-  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  fi
-
-  gpgconf --launch gpg-agent
-  gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
-
-fi
-
-
-# ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-# Set to superior editing mode
-
+# ~~~~~~~~~~~~~~~ Editing Mode ~~~~~~~~~~~~~~~~~~~~~~~~
 set -o vi
-
 export VISUAL=nvim
 export EDITOR=nvim
 export TERM="tmux-256color"
-
 export BROWSER="firefox"
 
-# Directories
-
+# ~~~~~~~~~~~~~~~ Directories ~~~~~~~~~~~~~~~~~~~~~~~~
 export REPOS="$HOME/Repos"
 export GITUSER="japostadan"
 export GHREPOS="$REPOS/github.com/$GITUSER"
@@ -43,24 +15,18 @@ export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
 export ZETTELKASTEN="$HOME/Zettelkasten"
 
-# Go related. In general all executables and scripts go in .local/bin
-
+# ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 export GOBIN="$HOME/.local/bin"
 export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-# export GOPATH="$HOME/.local/share/go"
 export GOPATH="$HOME/go/"
 
-
-# ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+# ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 setopt extended_glob null_glob
 
 path=(
     $path                           # Keep existing PATH entries
     $HOME/bin
     $HOME/.local/bin
-    $HOME/dotnet
     $SCRIPTS
     $HOME/.krew/bin
     $HOME/.rd/bin                   # Rancher Desktop
@@ -74,18 +40,12 @@ path=($^path(N-/))
 
 export PATH
 
-
 # ~~~~~~~~~~~~~~~ Dev Container Specifics ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -94,12 +54,8 @@ setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
 setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
 setopt SHARE_HISTORY      # Share history between sessions
 
-
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 PURE_GIT_PULL=0
-
 
 if [[ "$OSTYPE" == darwin* ]]; then
   fpath+=("$(brew --prefix)/share/zsh/site-functions")
@@ -110,95 +66,63 @@ fi
 autoload -U promptinit; promptinit
 prompt pure
 
-
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 
+# tmux integration
+alias t='tmux'
+alias ta='tmux attach'
+alias tls='tmux list-sessions'
+alias tn='tmux new-session'
 
-alias v=nvim
+# Reload tmux config to match .tmux.conf
+alias reload-tmux='tmux source-file ~/.tmux.conf'
 
+# Navigation
 alias scripts='cd $SCRIPTS'
 alias cdblog="cd ~/websites/blog"
-alias c="clear"
 alias icloud="cd \$ICLOUD"
-
-# Repos
-
 alias lab='cd $LAB'
 alias dot='cd $GHREPOS/dotfiles'
-alias repos='cd $REPOS'
 alias ghrepos='cd $GHREPOS'
 alias gr='ghrepos'
-alias cdgo='cd $GHREPOS/go/'
-alias rob='cd $REPOS/github.com/rwxrob'
+alias cdzk="cd \$ZETTELKASTEN"
 
-# Homelab
-
-alias homelab='cd $GHREPOS/homelab/'
-alias hl='homelab'
+# Pane and workflow consistency
+alias hl='cd $GHREPOS/homelab/'
 alias hlp='cd $GHREPOS/homelab-private/'
-alias hlps='cd $GHREPOS/homelab-private-staging/'
 alias hlpp='cd $GHREPOS/homelab-private-production/'
-alias skool='cd $GHREPOS/skool/'
 
 # ls
-
 alias ls='ls --color=auto'
 alias la='ls -lathr'
-# alias la='exa -laghm@ --all --icons --git --color=always'
 
-
-# finds all files recursively and sorts by last modification, ignore hidden files
+# Find files sorted by modification
 alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 
-alias t='tmux'
+# Clear screen
+alias c='clear'
 alias e='exit'
 
-alias syu='sudo pacman -Syu'
-
-# Azure
-
-alias sub='az account set -s'
-
 # Git
-
 alias gp='git pull'
 alias gs='git status'
 alias lg='lazygit'
 
-
-# Zettelkasten
-
-alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
-alias cdzk="cd \$ZETTELKASTEN"
-
-
 # Kubernetes
-
 alias k='kubectl'
-
 alias kgp='kubectl get pods'
 alias kc='kubectx'
 alias kn='kubens'
-
 alias fgk='flux get kustomizations'
 
-# Pass
+# Zettelkasten
+alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 
-alias pc='pass show -c'
-
-# Devpod
-
-alias ds='devpod ssh'
-
-# Bluetooth
-
-# Sony Headest
-alias btm='bluetoothctl connect 40:72:18:32:AC:53'
+# Reload Zsh config
+alias reload='source ~/.zshrc'
 
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 fpath+=~/.zfunc
 
 if type brew &>/dev/null; then
@@ -210,21 +134,22 @@ compinit -u
 
 zstyle ':completion:*' menu select
 
-
-# Example to install completion:
-# talosctl completion zsh > ~/.zfunc/_talosctl
-
-
 # ~~~~~~~~~~~~~~~ Sourcing ~~~~~~~~~~~~~~~~~~~~~~~~
+#source "$HOME/.privaterc"
+#source <(fzf --zsh)
 
+# ~~~~~~~~~~~~~~~ Misc Enhancements ~~~~~~~~~~~~~~~~~~~~~~~~
+# Add tmux integration for Vi-style pane navigation in shell
+bindkey '^k' up-line-or-history
+bindkey '^j' down-line-or-history
 
-source "$HOME/.privaterc"
-source <(fzf --zsh)
+# Automatically attach to an existing tmux session on login
+if [[ -z "$TMUX" ]]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
 
+# Enable `direnv` for managing environment variables per directory
 #eval "$(direnv hook zsh)"
 
-# ~~~~~~~~~~~~~~~ Misc ~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
+# ~~~~~~~~~~~~~~~ Final Notes ~~~~~~~~~~~~~~~~~~~~~~~~
+# Consistent environment variables, shortcuts, and tmux integration
