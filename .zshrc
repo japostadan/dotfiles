@@ -18,18 +18,15 @@ export ZETTELKASTEN="$HOME/Zettelkasten"
 # ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 export GOBIN="$HOME/.local/bin"
 export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-<<<<<<< HEAD
 export GOPATH="$HOME/go/"
 
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-=======
 export GOPATH="$HOME/.local/share/go"
 export GOPATH="$HOME/go/"
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
->>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 setopt extended_glob null_glob
 
 path=(
@@ -56,8 +53,8 @@ fi
 
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
 HISTFILE=~/.zsh_history
-HISTSIZE=2500
-SAVEHIST=2500
+HISTSIZE=25000
+SAVEHIST=25000
 
 setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
 setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
@@ -76,6 +73,9 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
+# neovim
+
+alias v=nvim
 
 # tmux integration
 alias t='tmux'
@@ -117,16 +117,11 @@ alias gp='git pull'
 alias gs='git status'
 alias lg='lazygit'
 
-<<<<<<< HEAD
-=======
-
 # Zettelkasten
 
 alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 alias cdzk="cd \$ZETTELKASTEN"
 
-
->>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 # Kubernetes
 alias k='kubectl'
 alias kgp='kubectl get pods'
@@ -134,14 +129,10 @@ alias kc='kubectx'
 alias kn='kubens'
 alias fgk='flux get kustomizations'
 
-# Zettelkasten
-alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
 
 # Reload Zsh config
 alias reload='source ~/.zshrc'
 
-<<<<<<< HEAD
-=======
 # Devpod
 
 alias ds='devpod ssh'
@@ -151,7 +142,6 @@ alias ds='devpod ssh'
 # Sony Headest
 alias btm='bluetoothctl connect 40:72:18:32:AC:53'
 
->>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 fpath+=~/.zfunc
@@ -179,10 +169,7 @@ if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
 
-<<<<<<< HEAD
 # Enable `direnv` for managing environment variables per directory
-=======
->>>>>>> 265660fc027cf409d8a541f2b7cd2af8cac6dc3c
 #eval "$(direnv hook zsh)"
 
 # ~~~~~~~~~~~~~~~ Final Notes ~~~~~~~~~~~~~~~~~~~~~~~~
