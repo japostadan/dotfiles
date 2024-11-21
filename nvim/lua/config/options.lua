@@ -9,8 +9,8 @@ local opt = vim.opt
 opt.ignorecase = true
 
 -- scrolling
-opt.number = false
-opt.relativenumber = false
+opt.number = true
+opt.relativenumber = true
 opt.scrolloff = 8
 
 -- wrap / break
