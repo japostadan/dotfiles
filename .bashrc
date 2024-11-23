@@ -1,6 +1,4 @@
-#
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -25,14 +23,14 @@ export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
-# export ICLOUD="$HOME/icloud"
-export ZETTELKASTEN="$HOME/Zettelkasten"
+export ICLOUD="$HOME/icloud"
+export ZETTELKASTEN="$HOME/Ikigai/"
 
 # Go related. In general all executables and scripts go in .local/bin
-#export GOBIN="$HOME/.local/bin"
-#export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-# export GOPATH="$HOME/.local/share/go"
-#export GOPATH="$HOME/go/"
+export GOBIN="$HOME/.local/bin"
+export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
+export GOPATH="$HOME/.local/share/go"
+export GOPATH="$HOME/go/"
 
 # dotnet
 #export DOTNET_ROOT="$HOME/dotnet"
@@ -42,9 +40,9 @@ export ZETTELKASTEN="$HOME/Zettelkasten"
 
 # ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 
-PATH="${PATH:+${PATH}:}"$SCRIPTS":"$HOME"/.local/bin:$HOME/dotnet" # appending
+#PATH="${PATH:+${PATH}:}"$SCRIPTS":"$HOME"/.local/bin:$HOME/dotnet" # appending
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+#export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -81,19 +79,19 @@ clone() {
 # ~~~~~~~~~~~~~~~ SSH ~~~~~~~~~~~~~~~~~~~~~~~~
 # SSH Script from arch wiki
 
-if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+#if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+#  ssh-agent >"$XDG_RUNTIME_DIR/ssh-agent.env"
+#fi
+#if [[ ! "$SSH_AUTH_SOCK" ]]; then
+#  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+#fi
 
 # Only run on Ubuntu
 
-if [[ $(grep -E "^(ID|NAME)=" /etc/os-release | grep -q "ubuntu")$? == 0 ]]; then
-  eval "$(ssh-agent -s)" >/dev/null
-  eval "$(fzf --bash)"
-fi
+#if [[ $(grep -E "^(ID|NAME)=" /etc/os-release | grep -q "ubuntu")$? == 0 ]]; then
+#  eval "$(ssh-agent -s)" >/dev/null
+#  eval "$(fzf --bash)"
+#fi
 
 # adding keys was buggy, add them outside of the script for now
 # ssh-add -q ~/.ssh/mischa
@@ -131,7 +129,7 @@ alias dot='cd $GHREPOS/dotfiles'
 alias repos='cd $REPOS'
 alias ghrepos='cd $GHREPOS'
 alias cdgo='cd $GHREPOS/go/'
-alias ex='cd $REPOS/github.com/mischavandenburg/go/Exercism/'
+#alias ex='cd $REPOS/github.com/mischavandenburg/go/Exercism/'
 alias rwdot='cd $REPOS/github.com/rwxrob/dot'
 
 alias avm='cd $REPOS/github.com/Azure/bicep-registry-modules'
@@ -151,8 +149,8 @@ alias cdq='cd $REPOS/github.com/jackyzha0/quartz'
 # ls
 alias ls='ls --color=auto'
 alias ll='ls -la'
-# alias la='exa -laghm@ --all --icons --git --color=always'
-alias la='ls -lathr'
+alias la='exa -laghm@ --all --icons --git --color=always'
+#alias la='ls -lathr'
 
 # finds all files recursively and sorts by last modification, ignore hidden files
 alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
@@ -197,8 +195,8 @@ alias sbr='source ~/.bashrc'
 alias s='startx'
 
 # vim & second brain
-alias in="cd \$ZETTELKASTEN/0 Inbox/"
-alias zk="cd \$ZETTELKASTEN"
+alias in="cd \$ZETTELKASTEN/inbox"
+alias zk="cd \$ZETTELKASTEN/Zettelkasten"
 
 # starting programmes
 #alias cards='python3 /opt/homebrew/lib/python3.11/site-packages/mtg_proxy_printer/'
@@ -212,7 +210,7 @@ alias fishies=asciiquarium
 
 # kubectl
 alias k='kubectl'
-#source <(kubectl completion bash)
+source <(kubectl completion bash)
 complete -o default -F __start_kubectl k
 alias kgp='kubectl get pods'
 alias kc='kubectx'

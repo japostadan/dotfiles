@@ -13,7 +13,7 @@ export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
-export ZETTELKASTEN="$HOME/Zettelkasten"
+export ZETTELKASTEN="$HOME/Ikigai"
 
 # ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 export GOBIN="$HOME/.local/bin"
@@ -119,7 +119,7 @@ alias lg='lazygit'
 
 # Zettelkasten
 
-alias in="cd \$ZETTELKASTEN/Zettelkasten/Inbox/"
+alias in="cd \$ZETTELKASTEN/inbox/"
 alias cdzk="cd \$ZETTELKASTEN"
 
 # Kubernetes
@@ -156,8 +156,8 @@ compinit -u
 zstyle ':completion:*' menu select
 
 # ~~~~~~~~~~~~~~~ Sourcing ~~~~~~~~~~~~~~~~~~~~~~~~
-#source "$HOME/.privaterc"
-#source <(fzf --zsh)
+source "$HOME/.privaterc"
+source <(fzf --zsh)
 
 # ~~~~~~~~~~~~~~~ Misc Enhancements ~~~~~~~~~~~~~~~~~~~~~~~~
 # Add tmux integration for Vi-style pane navigation in shell
@@ -172,5 +172,3 @@ fi
 # Enable `direnv` for managing environment variables per directory
 #eval "$(direnv hook zsh)"
 
-# ~~~~~~~~~~~~~~~ Final Notes ~~~~~~~~~~~~~~~~~~~~~~~~
-# Consistent environment variables, shortcuts, and tmux integration
