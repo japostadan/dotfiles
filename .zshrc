@@ -1,3 +1,7 @@
+
+
+
+
 # ~~~~~~~~~~~~~~~ Editing Mode ~~~~~~~~~~~~~~~~~~~~~~~~
 set -o vi
 export VISUAL=nvim
@@ -14,17 +18,6 @@ export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
 export ICLOUD="$HOME/icloud"
 export ZETTELKASTEN="$HOME/Ikigai"
-
-# ~~~~~~~~~~~~~~~ Go Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-export GOBIN="$HOME/.local/bin"
-export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
-export GOPATH="$HOME/go/"
-
-# ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~~~~~~~~~~~~~~~~
-export GOPATH="$HOME/.local/share/go"
-export GOPATH="$HOME/go/"
-
-# ~~~~~~~~~~~~~~~ Path configuration ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 setopt extended_glob null_glob
@@ -52,13 +45,6 @@ if [ -d "/home/linuxbrew/.linuxbrew" ]; then
 fi
 
 # ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~~~~
-HISTFILE=~/.zsh_history
-HISTSIZE=25000
-SAVEHIST=25000
-
-setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
-setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
-setopt SHARE_HISTORY      # Share history between sessions
 
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 PURE_GIT_PULL=0
@@ -88,7 +74,6 @@ alias reload-tmux='tmux source-file ~/.tmux.conf'
 
 # Navigation
 alias scripts='cd $SCRIPTS'
-alias cdblog="cd ~/websites/blog"
 alias icloud="cd \$ICLOUD"
 alias lab='cd $LAB'
 alias dot='cd $GHREPOS/dotfiles'
@@ -96,10 +81,6 @@ alias ghrepos='cd $GHREPOS'
 alias gr='ghrepos'
 alias cdzk="cd \$ZETTELKASTEN"
 
-# Pane and workflow consistency
-alias hl='cd $GHREPOS/homelab/'
-alias hlp='cd $GHREPOS/homelab-private/'
-alias hlpp='cd $GHREPOS/homelab-private-production/'
 
 # ls
 alias ls='ls --color=auto'
@@ -113,8 +94,16 @@ alias c='clear'
 alias e='exit'
 
 # Git
-alias gp='git pull'
+alias gl='git pull'
+alias gp='git push'
 alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gcl='git clone --revursive-submodules'
+alias gcm='git commit --all --message'
+alias glog='git log --oneline --decorate --graph --all'
+
 alias lg='lazygit'
 
 # Zettelkasten
