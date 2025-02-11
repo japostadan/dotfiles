@@ -1,7 +1,4 @@
 
-
-
-
 # ~~~~~~~~~~~~~~~ Editing Mode ~~~~~~~~~~~~~~~~~~~~~~~~
 set -o vi
 export VISUAL=nvim
@@ -144,10 +141,6 @@ compinit -u
 
 zstyle ':completion:*' menu select
 
-# ~~~~~~~~~~~~~~~ Sourcing ~~~~~~~~~~~~~~~~~~~~~~~~
-source "$HOME/.privaterc"
-source <(fzf --zsh)
-
 # ~~~~~~~~~~~~~~~ Misc Enhancements ~~~~~~~~~~~~~~~~~~~~~~~~
 # Add tmux integration for Vi-style pane navigation in shell
 bindkey '^k' up-line-or-history
@@ -157,7 +150,3 @@ bindkey '^j' down-line-or-history
 if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
-
-# Enable `direnv` for managing environment variables per directory
-#eval "$(direnv hook zsh)"
-
