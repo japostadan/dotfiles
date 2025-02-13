@@ -1,4 +1,3 @@
-
 # ~~~~~~~~~~~~~~~ Editing Mode ~~~~~~~~~~~~~~~~~~~~~~~~
 set -o vi
 export VISUAL=nvim
@@ -97,7 +96,7 @@ alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
 alias gb='git branch'
-alias gcl='git clone --revursive-submodules'
+alias gcl='git clone --recurse-submodules'
 alias gcm='git commit --all --message'
 alias glog='git log --oneline --decorate --graph --all'
 
@@ -150,3 +149,7 @@ bindkey '^j' down-line-or-history
 if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/eye/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
