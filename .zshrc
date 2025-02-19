@@ -51,9 +51,6 @@ else
   fpath+=($HOME/.zsh/pure)
 fi
 
-autoload -U promptinit; promptinit
-prompt pure
-
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
 # neovim
 
@@ -149,7 +146,6 @@ bindkey '^j' down-line-or-history
 if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
-
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/eye/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
