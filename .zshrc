@@ -33,7 +33,7 @@ path=(
 typeset -U path
 path=($^path(N-/))
 
-export PATH
+export PATH=$HOME/local/bin/bin:$PATH
 
 # ~~~~~~~~~~~~~~~ Dev Container Specifics ~~~~~~~~~~~~~~~~~~~~~~~~
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
@@ -51,7 +51,13 @@ else
   fpath+=($HOME/.zsh/pure)
 fi
 
+autoload -U promptinit; promptinit
+prompt pure
+
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~~~~
+# yt-dlp
+alias ydlmp4='yt-dlp -f "bestvideo&#91;ext=mp4]+bestaudio&#91;ext=m4a]/best&#91;ext=mp4]/best"'
+alias ydlmkv='yt-dlp -f "bestvideo&#91;ext=mkv]+bestaudio&#91;ext=mka]/best&#91;ext=mkv]/best"'
 # neovim
 
 alias v=nvim
@@ -65,6 +71,9 @@ alias tn='tmux new-session'
 # Reload tmux config to match .tmux.conf
 alias reload-tmux='tmux source-file ~/.tmux.conf'
 
+#copy
+alias cp='cp -vr'
+alias rm='rm -rfvi'
 # Navigation
 alias scripts='cd $SCRIPTS'
 alias icloud="cd \$ICLOUD"
@@ -137,6 +146,7 @@ compinit -u
 
 zstyle ':completion:*' menu select
 
+
 # ~~~~~~~~~~~~~~~ Misc Enhancements ~~~~~~~~~~~~~~~~~~~~~~~~
 # Add tmux integration for Vi-style pane navigation in shell
 bindkey '^k' up-line-or-history
@@ -146,6 +156,9 @@ bindkey '^j' down-line-or-history
 if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/eye/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# ~~~~~~~~~~~~ 42 Header ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USER=japostad
+MAIL=japostad@student.42barcelona.com
+export USER
+export MAIL
+source <(kubectl completion zsh)

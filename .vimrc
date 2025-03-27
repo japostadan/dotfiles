@@ -33,11 +33,12 @@ set number relativenumber	" deactivate line numbers
 set autoindent 				" automatically indent new lines
 set autoread				" Reload files changed outside vim
 set mouse=a					" Enable mouse in vim
-set tabstop=4				" number of spaces to replace a tab with when expandtab
 set noignorecase			" use case when searching
 set showmode				" show command and insert mode
 set t_vb=					" disable visual bell (also disable in .inputrc)
 set smartindent
+set ts=4
+set sw=4
 set smarttab
 set icon
 set ttyfast					" faster scrolling
