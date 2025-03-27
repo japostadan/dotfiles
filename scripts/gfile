@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Ask for the folder name
+echo "Enter the name of the folder:"
+read folder_name
+
+# Create the folder
+mkdir "$folder_name"
+
+# Change into the new folder
+cd "$folder_name" || exit
+
+# Ask for the file name
+echo "Enter the name of the file:"
+read file_name
+
+# Create the file inside the folder
+touch "$file_name"
+
+# Print a confirmation message
+echo "Folder '$folder_name' and file '$file_name' have been created successfully."
+

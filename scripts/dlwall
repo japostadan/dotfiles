@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Wallhaven API endpoint for searching images
+API_URL="https://wallhaven.cc/api/v1/search"
+S="?categories=110&purity=100&resolutions=1280x720%2C1920x1080&topRange=1M&sorting=toplist&order=desc&ai_art_filter=1&page="
+
+# Loop through pages 1 to 5 (you can adjust the range as needed)
+for page in {1..5}; do
+    echo "Fetching page $page..."
+
+    # Fetch images from the current page, sorted by 'toplist'
+    curl -s "$API_URL$S$page" | \
+        jq -r '.data[].path' | \
+        while read -r url; do
+            # Download each image using wget
+            wget "$url"
+        done
+
+    # Optionally, add a delay between requests to avoid hitting rate limits
+    echo "Finished downloading page $page."
+    sleep 2  # 2 seconds delay between pages
+done
+
