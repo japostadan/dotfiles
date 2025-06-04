@@ -1,21 +1,30 @@
 #!/bin/bash
-
 set -euo pipefail
 
+echo "[*] Starting dotfiles setup..."
+
+# Ensure zsh is installed
 if command -v zsh >/dev/null; then
-    sudo chsh -s $(command -v zsh) $USER
+    echo "[+] zsh found: $(which zsh)"
+else
+    echo "[!] zsh not found. Aborting."
+    exit 1
 fi
 
-if [ ! -d "$HOME/.zsh" ]; then
+# Pure prompt
+PURE_DIR="$HOME/.zsh/pure"
+if [ ! -d "$PURE_DIR" ]; then
+    echo "[*] Installing pure prompt..."
     mkdir -p "$HOME/.zsh"
+    git clone https://github.com/sindresorhus/pure.git "$PURE_DIR"
 fi
 
-if [ ! -d "$HOME/.zsh/pure" ]; then
-    git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+# Don't run chezmoi init inside itself — this is the init point
+if [ ! -d "$HOME/.local/share/chezmoi" ]; then
+    echo "[*] Applying dotfiles with chezmoi..."
+    chezmoi apply
+else
+    echo "[*] chezmoi already initialized."
 fi
 
-if ! command -v chezmoi >/dev/null; then
-    sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:japostadan/dotfiles.git
-fi
-
-exit 0
+echo "[+] Setup complete."
