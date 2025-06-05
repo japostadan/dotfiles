@@ -1,0 +1,12 @@
+syntax on
+set number
+set rl
+set ruler
+set showmatch
+set autoindent
+set smartindent
+set mouse=a
+set ts=4
+set sw=4
+let g:user42='japostad'
+let g:mail42='japostad@student.42barcelona.com'
