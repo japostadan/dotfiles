@@ -3,12 +3,6 @@
 -- Add any additional autocmds here
 --
 -- disable completion on markdown header and c files by default
- vim.api.nvim_create_autocmd("FileType", {
-   pattern = {"h","gitcommit", "markdown" },
-   callback = function()
-     require("cmp").setup({ enabled = false })
-   end,
- })
 -- Autoformat setting
 local set_autoformat = function(pattern, bool_val)
   vim.api.nvim_create_autocmd({ "FileType" }, {
