@@ -1,6 +1,5 @@
 syntax on
 set number
-set rl
 set ruler
 set showmatch
 set autoindent
