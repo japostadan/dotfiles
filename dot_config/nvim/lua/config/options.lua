@@ -20,8 +20,9 @@ opt.scrolloff = 8
  opt.linebreak = true
 
 -- indentation
-
-opt.expandtab = true -- convert tabs to spaces
+opt.list = true
+opt.listchars = { tab = '▸ ', trail = '·', nbsp = '·' }
+opt.expandtab = false -- convert tabs to spaces
 opt.tabstop = 4 -- insert 4 spaces for a tab
 opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 opt.smartindent = true
