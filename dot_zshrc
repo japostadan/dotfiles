@@ -109,12 +109,16 @@ alias kc='kubectx'
 alias kn='kubens'
 alias fgk='flux get kustomizations'
 
+# 42
+export MAIL="japostad@student.42barcelona.com"
+export USER="japostad"
+alias vgcheck='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt'
+
 
 # Reload Zsh config
 alias reload='source ~/.zshrc'
 
 # Devpod
-
 alias ds='devpod ssh'
 
 
