@@ -77,8 +77,6 @@ alias cdzk="cd \$ZETTELKASTEN"
 alias ls='ls --color=auto'
 alias la='ls -lathr'
 
-# Find files sorted by modification
-alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 
 # Clear screen
 alias c='clear'
