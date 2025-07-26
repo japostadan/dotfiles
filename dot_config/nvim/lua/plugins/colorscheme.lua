@@ -3,10 +3,16 @@ return {
   { "wittyjudge/gruvbox-material.nvim" },
 
   -- Configure LazyVim to load gruvbox
+  --{
+  --  "LazyVim/LazyVim",
+  --  opts = {
+  --    colorscheme = "gruvbox-material",
+  --  },
+  --},
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "tokyonight",
     },
   },
 }
