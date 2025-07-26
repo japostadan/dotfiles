@@ -1,5 +1,4 @@
-{
-  "extras": [
+{ "extras": [
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.markdown"
   ],
