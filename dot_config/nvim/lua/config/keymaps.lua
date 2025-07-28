@@ -10,28 +10,26 @@ vim.keymap.set(
   { desc = "Disable completion" }
 )
 
+-- Set variables
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap
+
 -- map esc to jk for laptop use
 -- vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape jk" })
-
--- insert the date in my desired configuration
-vim.keymap.set("n", "<leader>d", "<cmd>r!gendate<cr>", { desc = "Insert date" })
-vim.keymap.set("n", "<leader>h1", "<cmd>r!gendate h 1<cr>", { desc = "Insert date h1" })
-vim.keymap.set("n", "<leader>h2", "<cmd>r!gendate h 2<cr>", { desc = "Insert date h2" })
-
 -- lsp
-vim.keymap.set("n", "<leader>S", "<cmd>LspStop<CR>", { desc = "LspStop" })
+keymap.set("n", "<leader>S", "<cmd>LspStop<CR>", { desc = "LspStop" })
 
 -- surrounding words
-vim.keymap.set("n", "<leader>wsq", 'ciw""<Esc>P', { desc = "Word Surround Quotes" })
+keymap.set("n", "<leader>wsq", 'ciw""<Esc>P', { desc = "Word Surround Quotes" })
 
 -- replaces
-vim.keymap.set("n", "<leader>rbs", "<cmd>%s/\\//g<CR>", { desc = "Replace Backward Slash" })
+keymap.set("n", "<leader>rbs", "<cmd>%s/\\//g<CR>", { desc = "Replace Backward Slash" })
 
 -- telescope symbols
-vim.keymap.set("n", "<leader>fs", "<cmd>Telescope symbols<cr>", { desc = "Find Symbols" })
+keymap.set("n", "<leader>fs", "<cmd>Telescope symbols<cr>", { desc = "Find Symbols" })
 
 -- convert Current line to title cases
-vim.keymap.set(
+keymap.set(
   "n",
   "<leader>rlt",
   "<cmd>lua require('textcase').current_word('to_title_case')<CR>",
@@ -41,14 +39,33 @@ vim.keymap.set(
 
 -- these keep the cursor in the middle when scrolling with ctrl d and u
 -- from https://github.com/ThePrimeagen/init.lua
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- and these are for searching
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
 
 -- nvim go related
-vim.keymap.set("n", "<leader>gt", "<cmd>GoTest<CR>", { desc = "Go Test" })
+keymap.set("n", "<leader>gt", "<cmd>GoTest<CR>", { desc = "Go Test" })
 
+-- select all using ctl + a
+keymap.set("n", "<C-a>", "gg<S-v>G")
 
+-- new tab
+keymap.set("n", "te" ":tabedit", opts)
+
+-- next tab
+keymap.set("n", "<tab>", ":tabnext<Return>",opts)
+keymap.set("n", "<s-tab>", ":tabprev<Return>",opts)
+
+-- Split Window
+keymap.set("n", "ss", ":split<Return>",opts)
+keymap.set("n", "sv", ":vsplit<Return>",opts)
+
+-- Move Window
+
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sl", "<C-w>l")
+keymap.set("n", "sj", "<C-j>j")
