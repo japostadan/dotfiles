@@ -53,7 +53,8 @@ keymap.set("n", "<leader>gt", "<cmd>GoTest<CR>", { desc = "Go Test" })
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- new tab
-keymap.set("n", "te", ":tabedit", opts)
+keymap.set("n", "te", ":tabedit<Return>", opts)
+keymap.set("n", "tc", ":tabclose<Return>", opts)
 
 -- next tab
 keymap.set("n", "<tab>", ":tabnext<Return>",opts)
