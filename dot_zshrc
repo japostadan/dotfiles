@@ -149,4 +149,3 @@ export PATH="/Users/eye/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 eval "$(mise activate zsh)"
-
