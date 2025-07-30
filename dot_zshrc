@@ -5,17 +5,6 @@ export EDITOR=nvim
 export TERM="tmux-256color"
 export BROWSER="firefox"
 
-# ~~~~~~~~~~~~~~~ Directories ~~~~~~~~~~~~~~~~~~~~~~~~
-export REPOS="$HOME/Repos"
-export GITUSER="japostadan"
-export GHREPOS="$REPOS/github.com/$GITUSER"
-export DOTFILES="$GHREPOS/dotfiles"
-export LAB="$GHREPOS/lab"
-export SCRIPTS="$DOTFILES/scripts"
-export ICLOUD="$HOME/icloud"
-export ZETTELKASTEN="$HOME/Ikigai"
-
-
 setopt extended_glob null_glob
 
 path=(
@@ -77,6 +66,8 @@ alias cdzk="cd \$ZETTELKASTEN"
 alias ls='ls --color=auto'
 alias la='ls -lathr'
 
+# Find files sorted by modification
+alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
 
 # Clear screen
 alias c='clear'
@@ -107,16 +98,12 @@ alias kc='kubectx'
 alias kn='kubens'
 alias fgk='flux get kustomizations'
 
-# 42
-export MAIL="japostad@student.42barcelona.com"
-export USER="japostad"
-alias vgcheck='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt'
-
 
 # Reload Zsh config
 alias reload='source ~/.zshrc'
 
 # Devpod
+
 alias ds='devpod ssh'
 
 
@@ -127,6 +114,9 @@ fpath+=($HOME/.zsh/pure/)
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
+
+autoload -Uz compinit
+compinit -u
 
 zstyle ':completion:*' menu select
 
@@ -144,11 +134,9 @@ fi
 autoload -U promptinit; promptinit
 prompt pure
 
-# zoxide
-eval "$(zoxide init zsh --cmd cd)"
-
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/eye/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 eval "$(mise activate zsh)"
+eval "$(zoxide init zsh --cmd cd)"
