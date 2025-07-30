@@ -25,18 +25,6 @@ keymap.set("n", "<leader>wsq", 'ciw""<Esc>P', { desc = "Word Surround Quotes" })
 -- replaces
 keymap.set("n", "<leader>rbs", "<cmd>%s/\\//g<CR>", { desc = "Replace Backward Slash" })
 
--- telescope symbols
-keymap.set("n", "<leader>fs", "<cmd>Telescope symbols<cr>", { desc = "Find Symbols" })
-
--- convert Current line to title cases
-keymap.set(
-  "n",
-  "<leader>rlt",
-  "<cmd>lua require('textcase').current_word('to_title_case')<CR>",
-  { desc = "Replace Line Title" }
-)
--- vim.keymap.set("n", "<leader>rlt", "<cmd>s/<./\u&/g<cr>", { desc = "Replace Line Title" })
-
 -- these keep the cursor in the middle when scrolling with ctrl d and u
 -- from https://github.com/ThePrimeagen/init.lua
 keymap.set("n", "<C-d>", "<C-d>zz")
@@ -57,12 +45,12 @@ keymap.set("n", "te", ":tabedit<Return>", opts)
 keymap.set("n", "tc", ":tabclose<Return>", opts)
 
 -- next tab
-keymap.set("n", "<tab>", ":tabnext<Return>",opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>",opts)
+keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 
 -- Split Window
-keymap.set("n", "ss", ":split<Return>",opts)
-keymap.set("n", "sv", ":vsplit<Return>",opts)
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
 
 -- Move Window
 
