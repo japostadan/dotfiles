@@ -128,9 +128,9 @@ bindkey '^k' up-line-or-history
 bindkey '^j' down-line-or-history
 
 # Automatically attach to an existing tmux session on login
-if [[ -z "$TMUX" ]]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
+#if [[ -z "$TMUX" ]]; then
+#  tmux attach-session -t default || tmux new-session -s default
+#fi
 
 source <(fzf --zsh)
 
