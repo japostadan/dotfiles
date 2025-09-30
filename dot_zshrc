@@ -106,6 +106,8 @@ alias reload='source ~/.zshrc'
 
 alias ds='devpod ssh'
 
+# Search and edit
+alias edt ='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 fpath+=~/.zfunc
@@ -129,6 +131,8 @@ bindkey '^j' down-line-or-history
 if [[ -z "$TMUX" ]]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
+
+source <(fzf --zsh)
 
 # .zshrc
 autoload -U promptinit; promptinit
