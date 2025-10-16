@@ -1,0 +1,24 @@
+# dot_config/starship.toml
+
+# Use full path for cwd module
+[directory]
+style = "cyan"
+truncation_length = 3
+
+# Git branch styling
+[git_branch]
+symbol = "🌿 "
+
+# NodeJS version
+[nodejs]
+format = "via [nodejs](bold green) "
+
+# Show username only when root
+[username]
+show_always = false
+format = "[$user]($style) "
+
+# Disable battery module
+[battery]
+disabled = true
+

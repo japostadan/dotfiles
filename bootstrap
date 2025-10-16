@@ -1,0 +1,29 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "[*] Bootstrapping dotfiles with chezmoi..."
+
+# Add ~/.local/bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Install chezmoi if not present
+if ! command -v chezmoi >/dev/null 2>&1; then
+    echo "[*] Installing chezmoi..."
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+fi
+
+# Init chezmoi and apply dotfiles from this repo
+chezmoi init --apply https://github.com/japostadan/dotfiles.git
+
+# Run setup script
+SETUP_SCRIPT="$HOME/dotfiles/setup"
+if [ -x "$SETUP_SCRIPT" ]; then
+    "$SETUP_SCRIPT"
+elif [ -f "$SETUP_SCRIPT" ]; then
+    bash "$SETUP_SCRIPT"
+else
+    echo "[*] No setup script found — skipping."
+fi
+
+echo "[+] Bootstrap complete."
+
