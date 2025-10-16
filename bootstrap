@@ -13,7 +13,7 @@ if ! command -v chezmoi >/dev/null 2>&1; then
 fi
 
 # Init chezmoi and apply dotfiles from this repo
-chezmoi init --apply https://github.com/japostadan/dotfiles.git
+chezmoi init --apply git@github.com/japostadan/dotfiles.git
 
 # Run setup script
 SETUP_SCRIPT="$HOME/dotfiles/setup"
