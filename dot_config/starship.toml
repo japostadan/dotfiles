@@ -1,24 +1,82 @@
-# dot_config/starship.toml
+# ~/.config/starship.toml
 
-# Use full path for cwd module
+# Don't add a new line between prompts
+add_newline = false
+
+# Format of the entire prompt
+format = """
+[┌](bold green)$username[@](bold yellow)$hostname [](dim white) $directory$git_branch$git_status
+[└─>](bold green) """
+
+# Prompt symbol (we’ll use an arrow for clean look)
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
+# Username
+[username]
+style_user = "bold blue"
+style_root = "bold red"
+format = "[$user]($style)"
+show_always = true
+
+# Hostname
+[hostname]
+ssh_only = false
+format = "[$hostname]($style)"
+style = "bold yellow"
+
+# Current working directory
 [directory]
-style = "cyan"
+style = "bold cyan"
 truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style) "
 
-# Git branch styling
+# Git branch
 [git_branch]
 symbol = "🌿 "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
 
-# NodeJS version
-[nodejs]
-format = "via [nodejs](bold green) "
+# Git status
+[git_status]
+format = '([\[$all_status$ahead_behind\]](bold red) )'
+conflicted = "⚠️"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
-# Show username only when root
-[username]
-show_always = false
-format = "[$user]($style) "
-
-# Disable battery module
+# Optional: Battery display
 [battery]
+format = "[$symbol$percentage]($style) "
+charging_symbol = "⚡️"
+discharging_symbol = "🔋"
+full_symbol = "🔌"
+disabled = false
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+# Time (optional but nice)
+[time]
+disabled = false
+format = "🕙 [$time]($style) "
+time_format = "%H:%M:%S"
+style = "dim white"
+
+# Disable unnecessary modules
+[package]
 disabled = true
+
+[cmd_duration]
+min_time = 500
+format = "took [$duration]($style) "
+style = "yellow"
 

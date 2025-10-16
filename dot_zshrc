@@ -144,3 +144,4 @@ export PATH="/Users/eye/.rd/bin:$PATH"
 
 eval "$(mise activate zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(starship init zsh)"
