@@ -143,5 +143,9 @@ export PATH="/Users/eye/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 eval "$(mise activate zsh)"
+<<<<<<< Updated upstream
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
+=======
+#eval "$(zoxide init zsh --cmd cd)"
+>>>>>>> Stashed changes
