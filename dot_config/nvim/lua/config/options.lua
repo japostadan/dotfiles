@@ -10,7 +10,7 @@ local opt = vim.opt
 opt.ignorecase = true
 
 -- Auto format
-vim.g.autoformat = true
+-- vim.g.autoformat = true
 
 -- scrolling
 opt.number = true
