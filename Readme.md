@@ -1,4 +1,5 @@
 # 🚀 Usage
+# TODO - updated for remote campus
 
 ---
 
