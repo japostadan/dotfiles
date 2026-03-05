@@ -3,27 +3,28 @@ set -euo pipefail
 
 echo "[*] Bootstrapping dotfiles with chezmoi..."
 
-# Add ~/.local/bin to PATH
+# Ensure ~/.local/bin is on PATH (mise and chezmoi land here)
 export PATH="$HOME/.local/bin:$PATH"
 
 # Install chezmoi if not present
 if ! command -v chezmoi >/dev/null 2>&1; then
-    echo "[*] Installing chezmoi..."
-    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+    echo "[*] Installing chezmoi to ~/.local/bin ..."
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
 fi
 
-# Init chezmoi and apply dotfiles from this repo
-chezmoi init --apply git@github.com/japostadan/dotfiles.git
+# Use HTTPS so this works on any machine without SSH keys configured.
+# chezmoi will pull the repo and apply all dotfiles (including mise config).
+chezmoi init --apply https://github.com/japostadan/dotfiles.git
 
-# Run setup script
-SETUP_SCRIPT="$HOME/dotfiles/setup"
-if [ -x "$SETUP_SCRIPT" ]; then
-    "$SETUP_SCRIPT"
-elif [ -f "$SETUP_SCRIPT" ]; then
-    bash "$SETUP_SCRIPT"
-else
-    echo "[*] No setup script found — skipping."
+# Install mise if chezmoi externals didn't already drop it in ~/.local/bin
+if ! command -v mise >/dev/null 2>&1; then
+    echo "[*] Installing mise to ~/.local/bin ..."
+    curl -fsSL https://mise.run | MISE_INSTALL_PATH="$HOME/.local/bin/mise" bash
 fi
 
-echo "[+] Bootstrap complete."
+# Trust and install all tools declared in ~/.config/mise/config.toml
+echo "[*] Installing mise tools (no sudo required)..."
+mise trust "$HOME/.config/mise/config.toml" 2>/dev/null || true
+mise install
 
+echo "[+] Bootstrap complete. Open a new shell or run: exec zsh"

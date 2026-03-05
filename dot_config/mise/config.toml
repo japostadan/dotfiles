@@ -1,8 +1,17 @@
 [tools]
-bat = "latest"
-chezmoi = "latest"
-fzf = "latest"
-lsd = "latest"
-ripgrep = "latest"
-neovim = "latest"
-node = "latest"
+# Core CLI tools — all installed as pre-built binaries to ~/.local/bin (no sudo)
+bat       = "latest"   # better cat
+chezmoi   = "latest"   # dotfiles manager
+fzf       = "latest"   # fuzzy finder
+lsd       = "latest"   # better ls
+ripgrep   = "latest"   # better grep
+neovim    = "latest"   # editor
+node      = "latest"   # javascript runtime
+
+# Shell enhancements — pulled via mise so no sudo needed on any machine
+lazygit   = "latest"   # git TUI
+zoxide    = "latest"   # smart cd replacement
+tmux      = "latest"   # terminal multiplexer
+
+# Language runtimes
+go        = "latest"   # needed for some LSP tools (gopls, etc.)
