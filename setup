@@ -62,4 +62,19 @@ else
     echo "[!] No mise config found at ~/.config/mise/config.toml — skipping tool install."
 fi
 
+# ── Install nvm + Node.js (no sudo required) ─────────────────────────────────
+if [[ ! -d "$HOME/.nvm" ]]; then
+    echo "[*] Installing nvm..."
+    curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/HEAD/install.sh | bash
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+if ! node --version >/dev/null 2>&1; then
+    echo "[*] Installing Node.js LTS via nvm..."
+    nvm install --lts
+    nvm alias default node
+fi
+
 echo "[+] Setup complete. Open a new shell or run: exec zsh"

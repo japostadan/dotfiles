@@ -6,7 +6,6 @@ fzf       = "latest"   # fuzzy finder
 lsd       = "latest"   # better ls
 ripgrep   = "latest"   # better grep
 neovim    = "latest"   # editor
-node      = "latest"   # javascript runtime
 
 # Shell enhancements — pulled via mise so no sudo needed on any machine
 lazygit   = "latest"   # git TUI
