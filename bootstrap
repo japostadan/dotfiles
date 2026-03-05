@@ -1,30 +1,54 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "[*] Bootstrapping dotfiles with chezmoi..."
+echo "[*] Bootstrapping dotfiles..."
 
-# Ensure ~/.local/bin is on PATH (mise and chezmoi land here)
+# ── Pre-flight checks ─────────────────────────────────────────────────────────
+for dep in curl git; do
+    if ! command -v "$dep" >/dev/null 2>&1; then
+        echo "[!] '$dep' is required but not installed."
+        echo "    Install it first:"
+        echo "      Debian/Ubuntu: apt-get install -y $dep"
+        echo "      Fedora:        dnf install -y $dep"
+        echo "      macOS:         xcode-select --install"
+        exit 1
+    fi
+done
+
+# ── PATH ─────────────────────────────────────────────────────────────────────
 export PATH="$HOME/.local/bin:$PATH"
+mkdir -p "$HOME/.local/bin"
 
-# Install chezmoi if not present
+# ── Install chezmoi ───────────────────────────────────────────────────────────
 if ! command -v chezmoi >/dev/null 2>&1; then
     echo "[*] Installing chezmoi to ~/.local/bin ..."
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
 fi
 
-# Use HTTPS so this works on any machine without SSH keys configured.
-# chezmoi will pull the repo and apply all dotfiles (including mise config).
+# ── Apply dotfiles ─────────────────────────────────────────────────────────────
+# Uses HTTPS — works on any machine with no SSH key configured.
+# This clones the repo to ~/.local/share/chezmoi and applies all dotfiles.
+# Chezmoi externals also run here: mise binary is downloaded, pure is cloned.
+echo "[*] Applying dotfiles via chezmoi..."
 chezmoi init --apply https://github.com/japostadan/dotfiles.git
 
-# Install mise if chezmoi externals didn't already drop it in ~/.local/bin
+# ── Install mise ──────────────────────────────────────────────────────────────
+# Chezmoi external should have placed it in ~/.local/bin already.
+# This is a fallback in case the external didn't run.
 if ! command -v mise >/dev/null 2>&1; then
     echo "[*] Installing mise to ~/.local/bin ..."
     curl -fsSL https://mise.run | MISE_INSTALL_PATH="$HOME/.local/bin/mise" bash
 fi
 
-# Trust and install all tools declared in ~/.config/mise/config.toml
-echo "[*] Installing mise tools (no sudo required)..."
-mise trust "$HOME/.config/mise/config.toml" 2>/dev/null || true
-mise install
+# ── Run setup ─────────────────────────────────────────────────────────────────
+# setup is in .chezmoiignore so it isn't deployed to ~.
+# Call it from chezmoi's source directory instead.
+SETUP="$HOME/.local/share/chezmoi/setup"
+if [[ -f "$SETUP" ]]; then
+    echo "[*] Running setup..."
+    bash "$SETUP"
+else
+    echo "[!] Setup script not found at $SETUP — skipping."
+fi
 
 echo "[+] Bootstrap complete. Open a new shell or run: exec zsh"

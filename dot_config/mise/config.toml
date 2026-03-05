@@ -6,6 +6,13 @@ fzf       = "latest"   # fuzzy finder
 lsd       = "latest"   # better ls
 ripgrep   = "latest"   # better grep
 neovim    = "latest"   # editor
+fd        = "latest"   # better find
+delta     = "latest"   # syntax-highlighted git diffs
+jq        = "latest"   # JSON processor
+yazi      = "latest"   # terminal file manager
+k9s       = "latest"   # Kubernetes TUI
+gh        = "latest"   # GitHub CLI
+direnv    = "latest"   # per-directory env vars
 
 # Shell enhancements — pulled via mise so no sudo needed on any machine
 lazygit   = "latest"   # git TUI

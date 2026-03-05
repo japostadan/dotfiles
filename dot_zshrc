@@ -47,12 +47,13 @@ alias gr='ghrepos'
 alias lab='cd $LAB'
 alias scripts='cd $SCRIPTS'
 alias cdzk='cd $ZETTELKASTEN'
-alias in='cd $ZETTELKASTEN/inbox'
+alias inbox='cd $ZETTELKASTEN/inbox'
 
 # ── Aliases: editor & files ───────────────────────────────────────────────────
 alias v='nvim'
 alias ls='lsd'
 alias la='lsd -la'
+alias y='yazi'
 alias edt='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # ── Aliases: git ─────────────────────────────────────────────────────────────
@@ -88,11 +89,21 @@ alias c='clear'
 alias e='exit'
 
 # ── Tool integrations ─────────────────────────────────────────────────────────
-eval "$(mise activate zsh)"
-eval "$(zoxide init zsh --cmd cd)"
-source <(fzf --zsh)
+# Guards prevent hard errors on first login before tools are installed
+command -v mise    >/dev/null 2>&1 && eval "$(mise activate zsh)"
+command -v zoxide  >/dev/null 2>&1 && eval "$(zoxide init zsh --cmd cd)"
+command -v fzf     >/dev/null 2>&1 && source <(fzf --zsh)
 
 # ── nvm (Node version manager) ────────────────────────────────────────────────
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# ── direnv ────────────────────────────────────────────────────────────────────
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+
+# ── Zsh plugins (chezmoi externals clone these to ~/.zsh/) ───────────────────
+[ -s "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+    source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -s "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+    source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
